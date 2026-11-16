@@ -107,6 +107,14 @@ button,input,textarea{font:inherit}
 .leader .num{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--display); line-height:1}
 #introLeader{width:min(70vw,300px)}
 #introLeader .num{font-size:min(36vw,150px)}
+#introLeader .num svg{width:34%; height:34%; margin-left:6%; fill:currentColor}
+.begin{margin-top:26px; font-style:italic; font-size:19px; letter-spacing:.06em; color:rgba(246,234,210,.85); text-align:center; transition:opacity .6s}
+.begin small{display:block; font-size:13px; letter-spacing:.2em; text-transform:uppercase; font-style:normal; opacity:.6; margin-top:6px}
+#intro.waiting .begin{animation:beginPulse 2s ease-in-out infinite}
+@keyframes beginPulse{50%{opacity:.45}}
+#intro:not(.waiting) .begin{opacity:0}
+#intro.waiting .tap-skip{display:none}
+#intro.waiting{cursor:pointer}
 
 .titlecard{position:relative; width:min(90vw,440px); padding:46px 24px; text-align:center; color:#f6ead2; opacity:0; transform:scale(.97); transition:opacity 1.1s, transform 3s ease-out}
 .titlecard.on{opacity:1; transform:none}
@@ -460,23 +468,15 @@ footer{padding:30px 16px 130px}
 <div id="notes" aria-hidden="true"></div>
 
 <!-- ======================= INTRO ======================= -->
-<div id="intro">
+<div id="intro" class="waiting">
   <div class="beam"></div>
   <div class="scratches" id="scratches"></div>
 
   <div class="stage jitter" id="leaderStage" aria-hidden="true">
-    <div class="leader" id="introLeader"><div class="sweep" id="introSweep"></div><div class="ring"></div><div class="ring2"></div><div class="cross"></div><div class="num" id="introNum">3</div></div>
+    <div class="leader" id="introLeader"><div class="sweep" id="introSweep"></div><div class="ring"></div><div class="ring2"></div><div class="cross"></div><div class="num" id="introNum"><svg viewBox="0 0 10 10"><path d="M1 0 L10 5 L1 10Z"/></svg></div></div>
+    <div class="begin">tap to begin<small>with sound</small></div>
   </div>
 
-  <div class="stage off jitter" id="titleStage">
-    <div class="titlecard" id="titlecard">
-      <div class="bd"></div>
-      <svg class="orn tl"><use href="#orn"/></svg><svg class="orn tr"><use href="#orn"/></svg><svg class="orn bl"><use href="#orn"/></svg><svg class="orn br"><use href="#orn"/></svg>
-      <div class="small">a love story, in one evening</div>
-      <div class="big">Israa<span class="amp">&amp;</span>Ragaaey</div>
-      <div class="line">request the honour of your presence</div>
-    </div>
-  </div>
 
   <div class="stage off env-stage" id="envStage">
     <div class="env-wrap" id="envWrap">
@@ -865,7 +865,7 @@ footer{padding:30px 16px 130px}
   /* ---------------- intro ---------------- */
   const intro = $('#intro'), envStage = $('#envStage'), envWrap = $('#envWrap'), env = $('#envelope'), seal = $('#seal');
   let stage = 'leader', skipped = false;
-  const show = id => ['#leaderStage', '#titleStage', '#envStage'].forEach(s => $(s).classList.toggle('off', s !== id));
+  const show = id => ['#leaderStage', '#envStage'].forEach(s => $(s).classList.toggle('off', s !== id));
   async function runLeader() {
     const num = $('#introNum'), sweep = $('#introSweep');
     for (const n of [3, 2, 1]) {
@@ -885,22 +885,33 @@ footer{padding:30px 16px 130px}
     await wait(1400);
     envStage.classList.add('ready');
   }
-  (async () => {
+  function startMusic() {
+    if (!audio.paused) return;
+    audio.volume = 0;
+    audio.play().then(() => { musicBtn.classList.add('playing'); fadeVol(.7, 2500); }).catch(() => {});
+  }
+  let begun = false;
+  async function begin() {
+    if (begun) return; begun = true;
+    startMusic();
+    intro.classList.remove('waiting');
     await runLeader(); if (skipped) return;
-    stage = 'title'; show('#titleStage');
-    await wait(150); $('#titlecard').classList.add('on');
-    await wait(3600);
-    if (!skipped) toEnvelope();
-  })();
-  intro.addEventListener('click', () => { if (stage !== 'env') { skipped = true; toEnvelope(); } });
+    toEnvelope();
+  }
+  // browsers only allow sound after a tap; if this one allows it already, start right away
+  audio.volume = 0;
+  audio.play().then(() => { musicBtn.classList.add('playing'); fadeVol(.7, 2500); begin(); }).catch(() => {});
+  intro.addEventListener('click', () => {
+    if (!begun) return begin();
+    if (stage !== 'env') { skipped = true; toEnvelope(); }
+  });
 
   /* ---------------- open → card zoom → names in gold → portrait ---------------- */
   let opened = false;
   async function openInvite() {
     if (opened || !envStage.classList.contains('ready')) return; opened = true;
     crackle();
-    audio.volume = 0;
-    setTimeout(() => audio.play().then(() => { musicBtn.classList.add('playing'); fadeVol(.7, 3000); }).catch(() => {}), 800);
+    startMusic();
     envStage.classList.add('opening');
     env.classList.add('untie'); await wait(700);
     seal.classList.add('shake'); await wait(450);
