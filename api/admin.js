@@ -32,7 +32,7 @@ export default async function handler(req, res) {
   const k = encodeURIComponent(key);
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Cache-Control', 'no-store');
-  res.send(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wishes · Esraa & Ragaaey</title>
+  res.send(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wishes · Israa & Ragaaey</title>
 <style>body{font-family:Georgia,serif;background:#f3e9d6;color:#3a2a1c;margin:0;padding:24px 16px;max-width:760px;margin:auto}h1{font-weight:400;font-style:italic;color:#6e1d1d}
 .w{background:#fffaf0;border:1px solid #d9c49a;padding:14px 16px;margin:12px 0}.m{font-style:italic;white-space:pre-wrap}.n{color:#6e1d1d;margin-top:6px}.t{font-size:13px;color:#6e5841}
 button{font:inherit;background:none;border:1px solid #6e1d1d;color:#6e1d1d;padding:4px 10px;cursor:pointer;margin-top:8px}a{color:#6e1d1d}</style>

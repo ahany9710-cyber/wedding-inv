@@ -1,4 +1,4 @@
-# Esraa & Ragaaey — Wedding Invitation
+# Israa & Ragaaey — Wedding Invitation
 
 A vintage wedding invitation: one static page (`index.html`) plus two small Vercel functions for the wishes wall.
 
