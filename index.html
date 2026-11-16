@@ -308,26 +308,43 @@ section{padding:40px 16px; max-width:560px; margin:0 auto}
 .t-stub.torn{transform:translate(18px,60px) rotate(16deg); opacity:0}
 .tear-hint{text-align:center; font-style:italic; color:var(--ink-soft); font-size:16px; margin-top:12px}
 
-/* guestbook */
-.book{position:relative; margin-top:22px; padding:30px 22px 26px 34px; color:var(--ink); border-radius:2px 8px 8px 2px;
-  background-color:#fcf6e8;
+/* guestbook: an old leather-bound book, written like a letter */
+.book{position:relative; margin-top:44px; padding:30px 22px 26px 30px; color:var(--ink); border-radius:2px 6px 6px 2px;
+  background-color:#f8efd9;
   background-image:
-    linear-gradient(90deg, rgba(90,60,25,.22), rgba(90,60,25,.06) 18px, transparent 34px),
-    linear-gradient(90deg, transparent 26px, rgba(110,29,29,.28) 26px, rgba(110,29,29,.28) 27px, transparent 27px),
-    repeating-linear-gradient(180deg, transparent 0 33px, rgba(120,95,60,.22) 33px 34px);
-  background-position:0 0,0 0,0 14px;
-  box-shadow:0 18px 36px rgba(110,80,40,.2), -4px 0 0 #6e1d1d, -7px 0 0 #4c1212, 3px 3px 0 #efe3c8, 6px 6px 0 #e4d4b2}
-.book h3{font-family:var(--display); font-style:italic; font-weight:400; font-size:30px; color:var(--wine); line-height:1.2}
-.book .hint2{font-style:italic; color:var(--ink-soft); font-size:17px}
-.book form{margin-top:14px; display:grid; gap:12px}
-.lbl{display:block; font-style:italic; font-size:16px; color:var(--ink-soft)}
-.inp{width:100%; padding:2px 2px; font-size:21px; font-style:italic; color:var(--ink); background:transparent; border:0; border-radius:0; outline:none; line-height:34px}
-.inp::placeholder{color:rgba(58,42,28,.35)}
-.inp:focus{background:rgba(255,255,255,.35)}
-textarea.inp{resize:none; min-height:102px; line-height:34px; background:transparent}
-.send{justify-self:start; margin-top:6px}
+    radial-gradient(circle at 86% 78%, rgba(150,105,45,.13), transparent 10%),
+    radial-gradient(circle at 12% 30%, rgba(150,105,45,.09), transparent 8%),
+    radial-gradient(ellipse at center, transparent 55%, rgba(140,100,45,.22) 100%),
+    linear-gradient(90deg, rgba(70,40,15,.28), rgba(70,40,15,.06) 16px, transparent 30px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.05' numOctaves='4'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .15 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  box-shadow:0 20px 38px rgba(90,60,25,.24), -5px 0 0 #6e1d1d, -9px 0 0 #4c1212, -9px 3px 0 #4c1212, 2px 2px 0 #f1e5c9, 4px 4px 0 #e6d6b3, 6px 6px 0 #dcc9a2}
+.book::before{content:""; position:absolute; left:-9px; top:0; bottom:0; width:9px; pointer-events:none;
+  background:repeating-linear-gradient(180deg, transparent 0 46px, rgba(220,195,138,.8) 46px 47px, transparent 47px 50px, rgba(220,195,138,.8) 50px 51px, transparent 51px 120px)}
+.ribbon{position:absolute; top:-6px; right:132px; width:16px; height:86px; background:linear-gradient(90deg,#5c1515,#7d2424 50%,#5c1515); box-shadow:0 2px 3px rgba(0,0,0,.25);
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 86%,0 100%)}
+.quill-set{position:absolute; top:-92px; right:-14px; width:138px; height:auto; overflow:visible; pointer-events:none; filter:drop-shadow(0 6px 6px rgba(60,40,15,.25))}
+.quill-set .quill{transform-box:view-box; transform-origin:60px 112px; transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+#book:focus-within .quill-set .quill,.quill-set .quill.up{transform:translate(-6px,-26px) rotate(-7deg)}
+.quill-set .quill.signing{animation:sign 1.3s ease-in-out}
+@keyframes sign{0%{transform:translate(-6px,-26px) rotate(-7deg)}20%{transform:translate(-14px,-18px) rotate(-14deg)}35%{transform:translate(-4px,-22px) rotate(-4deg)}50%{transform:translate(-16px,-16px) rotate(-16deg)}65%{transform:translate(-6px,-20px) rotate(-6deg)}100%{transform:none}}
+.steps{display:flex; flex-wrap:wrap; gap:4px 14px; font-style:italic; font-size:15.5px; color:var(--ink-soft); padding-right:118px}
+.steps b{display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; margin-right:5px; border-radius:50%; border:1px solid var(--wine); color:var(--wine); font-style:normal; font-size:12px; font-weight:500; font-family:var(--text); vertical-align:1px}
+.book form{margin-top:18px; display:grid; gap:10px}
+.salute{font-family:var(--display); font-style:italic; font-size:24px; color:var(--wine); padding-right:60px}
+.inp{font-family:var(--text); font-style:italic; color:var(--ink); background-color:transparent; border:0; border-radius:0; outline:none}
+.inp::placeholder{color:rgba(58,42,28,.5)}
+.letter-lines{width:100%; min-height:148px; resize:vertical; padding:0 4px; font-size:21px; line-height:37px; background-attachment:local;
+  background-image:repeating-linear-gradient(180deg, transparent 0 36px, rgba(120,95,60,.38) 36px 37px)}
+.letter-lines:focus{background-color:rgba(255,252,240,.6); box-shadow:0 0 0 6px rgba(255,252,240,.6)}
+.signoff{display:flex; align-items:flex-end; gap:10px; flex-wrap:wrap; margin-top:4px}
+.signoff span{font-family:var(--display); font-style:italic; font-size:21px; color:var(--wine); line-height:40px}
+.signoff .inp{flex:1; min-width:160px; font-size:22px; line-height:36px; padding:0 4px; border-bottom:1px solid rgba(120,95,60,.5)}
+.signoff .inp:focus{border-bottom-color:var(--wine); background-color:rgba(255,252,240,.6)}
+.send{justify-self:start; margin-top:12px}
+.send svg{width:22px; height:22px; margin-left:-4px}
 .form-msg{font-style:italic; color:var(--wine); min-height:1.4em; font-size:16px}
-.thanks{display:none; padding:6px 0 0; text-align:center}
+.help{font-style:italic; font-size:15px; color:var(--ink-soft); margin-top:-4px}
+.thanks{display:none; padding:10px 0 0; text-align:center}
 .thanks.show{display:block; animation:fadeUp 1s ease both .45s}
 @keyframes fadeUp{from{opacity:0; transform:translateY(10px)}to{opacity:1; transform:none}}
 .thanks .t{font-family:var(--display); font-style:italic; font-size:32px; color:var(--wine)}
@@ -343,7 +360,7 @@ textarea.inp{resize:none; min-height:102px; line-height:34px; background:transpa
 @keyframes pageIn{from{transform:rotateY(70deg); opacity:0}to{transform:none; opacity:1}}
 .entry{padding:0 0 10px}
 .entry + .entry{border-top:1px dashed rgba(120,95,60,.35); padding-top:10px}
-.entry .msg{font-style:italic; font-size:20px; line-height:34px; white-space:pre-wrap; overflow-wrap:anywhere}
+.entry .msg{font-style:italic; font-size:20px; line-height:34px; color:var(--ink); white-space:pre-wrap; overflow-wrap:anywhere}
 .entry .who{font-family:var(--display); font-style:italic; font-size:19px; color:var(--wine); text-align:right; line-height:34px}
 .entry.new{animation:fadeUp .9s ease both}
 .empty{font-style:italic; color:var(--ink-soft); line-height:34px}
@@ -351,7 +368,7 @@ textarea.inp{resize:none; min-height:102px; line-height:34px; background:transpa
 .pager[hidden]{display:none}
 .pager button{border:0; background:none; color:var(--wine); font-style:italic; font-size:17px; cursor:pointer; min-height:40px; padding:0 6px}
 .pager button:disabled{opacity:.3; cursor:default}
-.pages-head{font-family:var(--display); font-style:italic; font-size:22px; color:var(--wine); border-top:1px solid rgba(176,138,69,.5); padding-top:14px}
+.pages-head{font-family:var(--display); font-style:italic; font-size:24px; color:var(--wine); text-align:center; padding-top:18px; margin-bottom:8px; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16'%3E%3Cg fill='none' stroke='%23b08a45' stroke-width='1'%3E%3Cpath d='M2 8h70M128 8h70'/%3E%3Cpath d='M72 8c8-8 18-8 22-2s-8 8-8 2 14-10 18-2 10 6 24 2'/%3E%3C/g%3E%3C/svg%3E") top center/180px 14px no-repeat}
 
 /* end reel */
 .reel{position:relative; margin:10px auto 0; width:min(92vw,460px); padding:18px 34px; background:#1d120a; border-radius:4px; box-shadow:0 18px 36px rgba(60,35,15,.35)}
@@ -363,7 +380,10 @@ textarea.inp{resize:none; min-height:102px; line-height:34px; background:transpa
 .reel .screen::after{content:""; position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(90deg, transparent 0 60px, rgba(255,240,210,.06) 60px 61px); animation:flicker .2s steps(2) infinite}
 .reel .end{font-family:var(--display); font-style:italic; font-size:clamp(56px,16vw,84px); line-height:1; color:#f0d9a8}
 .reel .ab{font-style:italic; font-size:19px; color:rgba(246,234,210,.8); margin-top:8px}
-.reel .mg{width:74px; height:74px; margin:18px auto 0; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--display); font-style:italic; font-size:24px; color:#f0d9a8; box-shadow:inset 0 0 0 1px #f0d9a8, inset 0 0 0 5px transparent, inset 0 0 0 6px rgba(240,217,168,.45)}
+.reel .mg{position:relative; width:96px; height:96px; margin:14px auto 0; display:flex; align-items:center; justify-content:center; font-family:var(--display); font-style:italic; font-size:24px; color:#f0d9a8}
+.reel .mg svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible; animation:beat 2.4s ease-in-out infinite}
+.reel .mg span{position:relative; margin-top:-10px}
+@keyframes beat{0%,100%{transform:scale(1)}12%{transform:scale(1.06)}24%{transform:scale(1)}36%{transform:scale(1.04)}48%{transform:scale(1)}}
 .reel .nm{font-family:var(--display); font-style:italic; font-size:26px; color:#f0d9a8; margin-top:10px}
 .reel .dt{letter-spacing:.2em; font-size:14px; color:rgba(246,234,210,.6)}
 footer{padding:30px 16px 130px}
@@ -611,19 +631,36 @@ footer{padding:30px 16px 130px}
 
   <section id="wishes">
     <h2 class="sec-title reveal">Our guestbook</h2>
-    <div class="sub reveal">Leave us a note, we'll keep it forever</div>
+    <div class="sub reveal">Write a little note to the couple, it will stay in their book forever</div>
     <div class="book reveal" id="book">
+      <div class="ribbon" aria-hidden="true"></div>
+      <svg class="quill-set" viewBox="0 0 120 170" aria-hidden="true">
+        <defs>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#132020"/><stop offset=".35" stop-color="#2b3b39"/><stop offset=".6" stop-color="#121c1c"/><stop offset="1" stop-color="#0a1111"/></linearGradient>
+          <linearGradient id="feather" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#e9dcc0"/><stop offset=".6" stop-color="#fbf5e8"/><stop offset="1" stop-color="#f1e6cf"/></linearGradient>
+        </defs>
+        <g class="quill">
+          <path d="M59 118C70 84 88 44 113 8" fill="none" stroke="#a88c5c" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M66 98C60 66 78 30 112 9 98 34 86 64 70 99Z" fill="url(#feather)" stroke="#a98e5e" stroke-width=".9"/>
+          <path d="M72 96C84 72 96 42 113 10 112 34 100 66 76 99Z" fill="#efe3c9" stroke="#a98e5e" stroke-width=".9"/>
+          <g stroke="#b39a6c" stroke-width=".7" fill="none"><path d="M70 86l-6-6M74 76l-7-7M78 66l-8-6M83 56l-8-6M88 46l-7-6M94 36l-7-5M100 27l-6-4"/><path d="M73 88l8-4M77 78l9-4M81 68l9-4M86 58l9-4M91 48l8-4M97 38l8-4"/></g>
+          <path d="M57 120l3-8 3 1-2 9-3 4z" fill="#3a2a1c"/>
+        </g>
+        <path d="M44 112h32l2 6H42z" fill="url(#brass)" stroke="#6b4a1c" stroke-width=".6"/>
+        <path d="M40 118h40c4 0 6 3 6 7v30c0 5-3 8-8 8H42c-5 0-8-3-8-8v-30c0-4 2-7 6-7z" fill="url(#glass)" stroke="#060b0b" stroke-width=".8"/>
+        <path d="M40 124c0 10 0 22 1 34" stroke="rgba(255,255,255,.28)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <path d="M36 140h48" stroke="rgba(30,15,60,.5)" stroke-width="10" opacity=".35"/>
+        <ellipse cx="60" cy="112" rx="16" ry="2.6" fill="#0d0a14"/>
+      </svg>
       <div id="writeArea">
-        <h3>Sign the guestbook</h3>
+        <div class="steps"><span><b>1</b>write your wishes</span><span><b>2</b>sign your name</span><span><b>3</b>tap the button</span></div>
         <form id="wishForm" novalidate>
-          <label><span class="lbl">your name</span>
-            <input class="inp" name="name" autocomplete="name" required maxlength="60" placeholder="Your name">
-          </label>
-          <label><span class="lbl">your wishes for the couple</span>
-            <textarea class="inp" name="message" required maxlength="500" rows="3" placeholder="Write something from the heart…"></textarea>
-          </label>
+          <p class="salute">Dear Esraa &amp; Ragaaey,</p>
+          <textarea class="inp letter-lines" name="message" required maxlength="500" rows="4" placeholder="write your wishes here…" aria-label="Your wishes for the couple"></textarea>
+          <div class="signoff"><span>With love,</span><input class="inp" name="name" autocomplete="name" required maxlength="60" placeholder="your name" aria-label="Your name"></div>
           <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-          <button class="btn send" type="submit">Sign the guestbook</button>
+          <button class="btn send" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l3.5-1 10-10-2.5-2.5-10 10z"/><path d="M15 6.5l2.5 2.5 2-2a1.8 1.8 0 0 0-2.5-2.5z"/><path d="M4 20l3.5-3.5"/></svg><span class="send-label">Sign the guestbook</span></button>
+          <div class="help">Your note will appear in the book below.</div>
           <div class="form-msg" id="formMsg" role="status"></div>
         </form>
         <div class="thanks" id="thanks">
@@ -650,7 +687,7 @@ footer{padding:30px 16px 130px}
       <div class="screen">
         <div class="end">The End</div>
         <div class="ab">…and so it begins</div>
-        <div class="mg">E&amp;R</div>
+        <div class="mg"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#sealinner" transform="translate(50 50) scale(1.32) translate(-50 -50)" fill="none" stroke="#f0d9a8" stroke-width="1.1"/><use href="#sealinner" transform="translate(50 50) scale(1.18) translate(-50 -50)" fill="none" stroke="rgba(240,217,168,.45)" stroke-width=".7"/></svg><span>E&amp;R</span></div>
         <div class="nm">Esraa &amp; Ragaaey</div>
         <div class="dt">09 · 12 · 2026</div>
       </div>
@@ -973,10 +1010,11 @@ footer{padding:30px 16px 130px}
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const name = form.name.value.trim(), message = form.message.value.trim();
-    if (name.length < 2) { msg.textContent = 'Please write your name.'; form.name.focus(); return; }
-    if (message.length < 2) { msg.textContent = 'Please write a few words for the couple.'; form.message.focus(); return; }
-    const btn = form.querySelector('.send');
-    btn.disabled = true; btn.textContent = 'Signing…'; msg.textContent = '';
+    if (message.length < 2) { msg.textContent = 'Please write a few words for the couple first.'; form.message.focus(); return; }
+    if (name.length < 2) { msg.textContent = 'Please sign your name after “With love,”.'; form.name.focus(); return; }
+    const btn = form.querySelector('.send'), label = btn.querySelector('.send-label'), quill = document.querySelector('.quill-set .quill');
+    btn.disabled = true; label.textContent = 'Signing…'; msg.textContent = '';
+    quill.classList.remove('signing'); void quill.getBoundingClientRect(); quill.classList.add('signing');
     try {
       const res = await fetch('/api/wishes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, message, website: form.website.value }) });
       if (!res.ok) throw new Error();
@@ -991,9 +1029,9 @@ footer{padding:30px 16px 130px}
     } catch {
       msg.textContent = 'That didn’t go through — please try again.';
     }
-    btn.disabled = false; btn.textContent = 'Sign the guestbook';
+    btn.disabled = false; label.textContent = 'Sign the guestbook';
   });
-  $('#again').addEventListener('click', () => { form.reset(); form.style.display = ''; $('#thanks').classList.remove('show'); form.name.focus(); });
+  $('#again').addEventListener('click', () => { form.reset(); form.style.display = ''; $('#thanks').classList.remove('show'); form.message.focus(); });
 })();
 </script>
 </body>
