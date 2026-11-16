@@ -218,7 +218,7 @@ section{padding:40px 16px; max-width:560px; margin:0 auto}
 .reveal{opacity:0; transform:translateY(24px); transition:opacity 1.2s ease, transform 1.2s ease}
 .reveal.in{opacity:1; transform:none}
 
-/* portrait with brass nameplate */
+/* portrait */
 .hero{padding-top:56px; text-align:center}
 .hero .k{font-style:italic; font-size:20px; color:var(--ink-soft)}
 .hero h1{font-family:var(--display); font-style:italic; font-weight:400; font-size:clamp(50px,14vw,78px); line-height:1.05; color:var(--wine); margin:4px 0 24px}
@@ -231,14 +231,15 @@ section{padding:40px 16px; max-width:560px; margin:0 auto}
 .frame .shine{position:absolute; inset:0; pointer-events:none; background:linear-gradient(115deg, transparent 35%, rgba(255,240,200,.55) 48%, transparent 60%); transform:translateX(-120%)}
 .frame.developed .shine{animation:shine 2.2s ease 3.4s forwards}
 @keyframes shine{to{transform:translateX(120%)}}
-.plate{position:relative; display:inline-block; margin-top:-4px; padding:12px 34px 10px; border-radius:3px; color:#2e1f0d;
-  background:linear-gradient(180deg,#ecd593 0%,#c9a24a 40%,#a8843c 60%,#dcc07a 100%);
-  box-shadow:0 8px 16px rgba(90,60,25,.3), inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(80,50,15,.4), inset 0 0 0 1px rgba(80,50,15,.35)}
-.plate::before,.plate::after{content:""; position:absolute; top:50%; width:7px; height:7px; border-radius:50%; transform:translateY(-50%);
-  background:radial-gradient(circle at 35% 35%, #fff2c6, #8d6a2e 70%); box-shadow:0 1px 1px rgba(0,0,0,.35)}
-.plate::before{left:11px}.plate::after{right:11px}
-.plate .pn{font-family:var(--display); font-style:italic; font-size:clamp(20px,6vw,26px); line-height:1.15; text-shadow:0 1px 0 rgba(255,240,200,.6)}
-.plate .pd{font-size:14px; letter-spacing:.24em; text-shadow:0 1px 0 rgba(255,240,200,.6)}
+/* museum label under the portrait */
+.mlabel{position:relative; width:min(310px,86vw); margin:22px auto 0; padding:16px 18px 14px; text-align:center; background:#fffaf0;
+  box-shadow:0 8px 18px rgba(90,60,25,.22), 0 1px 3px rgba(90,60,25,.15), inset 0 0 0 1px rgba(176,138,69,.35)}
+.mlabel .ln{font-family:var(--display); font-weight:700; font-size:22px; line-height:1.2; color:var(--ink)}
+.mlabel .ls{font-style:italic; font-size:16px; color:var(--ink-soft)}
+.mlabel .ld{display:flex; align-items:center; justify-content:center; gap:10px; margin-top:10px}
+.mlabel .ld i{height:1px; width:30px; background:var(--gold)}
+.mlabel .ld b{font-family:var(--display); font-weight:400; font-size:24px; letter-spacing:.06em; color:var(--wine); font-variant-numeric:lining-nums}
+.mlabel .lw{font-size:16px; color:var(--ink-soft); margin-top:2px}
 .hero .place{font-style:italic; font-size:20px; color:var(--ink-soft); margin-top:14px}
 .scroll-cue{display:inline-flex; flex-direction:column; align-items:center; gap:6px; margin-top:22px; color:var(--ink-soft); text-decoration:none; font-style:italic; font-size:16px; opacity:.8}
 .scroll-cue span{display:block; width:1px; height:32px; background:linear-gradient(var(--gold),transparent); animation:cue 2s ease-in-out infinite; transform-origin:top}
@@ -577,8 +578,12 @@ footer{padding:30px 16px 130px}
       <img src="assets/couple.webp" alt="Israa and Ragaaey in their wedding attire, in an antique gold frame" width="1254" height="1254">
       <div class="shine"></div>
     </div>
-    <div class="plate reveal"><div class="pn">Israa &amp; Ragaaey</div><div class="pd">09 · 12 · 2026</div></div>
-    <div class="place reveal">Jewel Sports Resort · seven in the evening</div>
+    <div class="mlabel reveal">
+      <div class="ln">Israa &amp; Ragaaey</div>
+      <div class="ls">A Love Story, the wedding portrait</div>
+      <div class="ld"><i></i><b>09 · 12 · 2026</b><i></i></div>
+      <div class="lw">Wednesday · 7:00 PM · Jewel Sports Resort</div>
+    </div>
     <a class="scroll-cue reveal" href="#invite">scroll<span></span></a>
   </section>
 
