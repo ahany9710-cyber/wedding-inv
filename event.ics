@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Israa & Ragaaey//Wedding//EN
+PRODID:-//Israa & Ragaey//Wedding//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
@@ -8,14 +8,14 @@ UID:israa-ragaaey-wedding-20261209@vercel.app
 DTSTAMP:20261116T000000Z
 DTSTART:20261209T170000Z
 DTEND:20261209T220000Z
-SUMMARY:Israa & Ragaaey's Wedding
+SUMMARY:Israa & Ragaey's Wedding
 LOCATION:Jewel Sports Resort
 DESCRIPTION:We can't wait to celebrate with you!\nhttps://maps.app.goo.gl/J6JykoGiMduaev2N9
 URL:https://maps.app.goo.gl/J6JykoGiMduaev2N9
 BEGIN:VALARM
 TRIGGER:-P1D
 ACTION:DISPLAY
-DESCRIPTION:Israa & Ragaaey's Wedding tomorrow
+DESCRIPTION:Israa & Ragaey's Wedding tomorrow
 END:VALARM
 END:VEVENT
 END:VCALENDAR
